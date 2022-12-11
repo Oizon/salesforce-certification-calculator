@@ -9,12 +9,13 @@ const userInterfaceWeight = .25;
 const testingDebuggingAndDeploymentWeight = .22;
 const developerFunadmentalsQuestionsCount =
     Math.round(questionCount * developerFundamentalsWeight);
-const processAuthomationAndLogicQuestionCount = 
+const processAutomationAndLogicQuestionCount = 
     Math.round(questionCount * processAutomationAndLogicWeight);
 const userInterfaceQuestionCount = 
     Math.round(questionCount * userInterfaceWeight);
 const testingDebuggingAndDeploymentQuestionCount = 
     Math.round(questionCount * testingDebuggingAndDeploymentWeight);
+const INVALID_MESSAGE = 'Please enter a valid value.';
 
 export default class CertificationCalculator extends LightningElement {
     //@track is used to make variables reactive allowing use to store the value
@@ -22,7 +23,8 @@ export default class CertificationCalculator extends LightningElement {
     @track processAutomationAndLogic = 0; 
     @track userInterface = 0 ;
     @track testingDebuggingAndDeployment = 0;
-    @track scoreMessage = 'Awaiting Results...'
+    @track scoreMessage = 'Awaiting Results...';
+    @track sectionQuestionCount = 'Awaiting Results...';
 
     //Retrieves the number that is inputted for use in the back end
     onDeveloperFundamentalsChange(event){
@@ -50,16 +52,31 @@ export default class CertificationCalculator extends LightningElement {
             Math.round(this.testingDebuggingAndDeployment * testingDebuggingAndDeploymentWeight);
         
         let developerFundamentalsQuestionsCorrectCount = 
-            Math.round()
+            Math.round(this.developerFundamentals / 100 * developerFunadmentalsQuestionsCount);
+        let processAutomationAndLogicCorrectCount = 
+            Math.round(this.processAutomationAndLogic / 100 * processAutomationAndLogicQuestionCount);
+        let userInterfaceCorrectCount = 
+            Math.round(this.userInterface / 100 * userInterfaceQuestionCount);
+        let testingDebuggingAndDeploymentCorrectCount = 
+            Math.round(this.testingDebuggingAndDeployment / 100 * testingDebuggingAndDeploymentQuestionCount);
+        let sectionBreakdown = 
+            `For Developer Fundamentals you got ${developerFundamentalsQuestionsCorrectCount} out of ${developerFunadmentalsQuestionsCount} correct.` + '\n' + 
+            `For Process Automation and Logic you got ${processAutomationAndLogicCorrectCount} out of ${processAutomationAndLogicQuestionCount} correct.` + '\n' +
+            `For User Interface you got ${userInterfaceCorrectCount} out of ${userInterfaceQuestionCount} correct.` + '\n' +
+            `For Testing Debugging and Deployment you got ${testingDebuggingAndDeploymentCorrectCount} out of ${testingDebuggingAndDeploymentQuestionCount} correct.`;
 
         let score = developerFundamentalsScore + processAutomationAndLogicScore + userInterfaceScore + testingDebuggingAndDeploymentScore;
         //This checks the score retrieved with the passing score and outputs a sentence. 
         if (score >= passingScore && score < 101) {
             this.scoreMessage = `Pass! Your overall score is ${score}`;
+            this.sectionQuestionCount = sectionBreakdown; 
         }else if(score >= 101){
-            this.scoreMessage = 'Please enter a valid value';
-        }else
+            this.scoreMessage = INVALID_MESSAGE;
+            this.sectionQuestionCount = INVALID_MESSAGE;
+        }else{
             this.scoreMessage = `Fail your overall score was ${score}`;
+            this.sectionQuestionCount = sectionBreakdown;
+        }
+
     }
 }
-
