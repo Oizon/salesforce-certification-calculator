@@ -67,16 +67,22 @@ export default class CertificationCalculator extends LightningElement {
 
         let score = developerFundamentalsScore + processAutomationAndLogicScore + userInterfaceScore + testingDebuggingAndDeploymentScore;
         //This checks the score retrieved with the passing score and outputs a sentence. 
-        if (score >= passingScore && score < 101) {
-            this.scoreMessage = `Pass! Your overall score is ${score}`;
-            this.sectionQuestionCount = sectionBreakdown; 
-        }else if(score >= 101){
-            this.scoreMessage = INVALID_MESSAGE;
-            this.sectionQuestionCount = INVALID_MESSAGE;
-        }else{
-            this.scoreMessage = `Fail your overall score was ${score}`;
-            this.sectionQuestionCount = sectionBreakdown;
+        //This if statement checks for invalid values
+        if(this.developerFundamentals > 100 ||
+            this.processAutomationAndLogic > 100 ||
+            this.userInterface > 100 ||
+            this.testingDebuggingAndDeployment > 100){
+                this.scoreMessage = INVALID_MESSAGE;
+                this.sectionQuestionCount = INVALID_MESSAGE;
+            }else{
+                //This one checks if it is passing or failing and displays the appropriate score.
+                if (score >= passingScore) {
+                    this.scoreMessage = `Pass! Your overall score is ${score}`;
+                    this.sectionQuestionCount = sectionBreakdown; 
+                }else{
+                    this.scoreMessage = `Fail your overall score was ${score}`;
+                    this.sectionQuestionCount = sectionBreakdown;
+            }
         }
-
     }
 }

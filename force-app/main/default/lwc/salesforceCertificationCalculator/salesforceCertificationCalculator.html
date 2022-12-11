@@ -8,10 +8,10 @@
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<lightning-input 	type="number" 
 								label="Developer Fundamentals" 
-								placeholder="Enter Your Score" 
 								maxlength="3" 
 								value={developerFundamentals}
 								max='100'
+								min="0"
 								message-when-range-overflow='Please enter between 1-100'
 								onchange={onDeveloperFundamentalsChange}>
 			</lightning-input>
@@ -19,10 +19,10 @@
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<lightning-input 	type="number" 
 								label="Process Automation and Logic" 
-								placeholder="Enter Your Score" 
 								maxlength="3" 
 								value={processAutomationAndLogic}
 								max='100'
+								min="0"
 								message-when-range-overflow='Please enter between 1-100'
 								onchange={onProcessAutomationAndLogicChange}>
 			</lightning-input>
@@ -30,10 +30,10 @@
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<lightning-input 	type="number" 
 								label="User Interface" 
-								placeholder="Enter Your Score" 
 								maxlength="3" 
 								value={userInterface}
 								max='100'
+								min="0"
 								message-when-range-overflow='Please enter between 1-100'
 								onchange={onUserInterfaceChange}>
 			</lightning-input>
@@ -41,10 +41,10 @@
 		<div class="slds-var-p-around_x-small lgc-bg">
 			<lightning-input 	type="number" 
 								label="Testing, Debugging, and Deployment" 
-								placeholder="Enter Your Score"
 								maxlength="3" 
 								value={testingDebuggingAndDeployment}
 								max='100'
+								min="0"
 								message-when-range-overflow='Please enter between 1-100'
 								onchange={onTestingDebuggingAndDeploymentChange}>
 			</lightning-input>
