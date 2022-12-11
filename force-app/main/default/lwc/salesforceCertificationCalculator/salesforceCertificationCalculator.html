@@ -1,0 +1,58 @@
+<template>
+	<lightning-card title="Salesforce Certification Calculator">
+		<lightning-button 		label="Calculate" 
+								slot="actions" 
+								onclick={calculateScore}>
+		</lightning-button>
+		<p class="slds-var-p-horizontal_small">Use this to calculate your PD1 score</p>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Developer Fundamentals" 
+								placeholder="Enter Your Score" 
+								maxlength="3" 
+								value={developerFundamentals}
+								max='100'
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onDeveloperFundamentalsChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Process Automation and Logic" 
+								placeholder="Enter Your Score" 
+								maxlength="3" 
+								value={processAutomationAndLogic}
+								max='100'
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onProcessAutomationAndLogicChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="User Interface" 
+								placeholder="Enter Your Score" 
+								maxlength="3" 
+								value={userInterface}
+								max='100'
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onUserInterfaceChange}>
+			</lightning-input>
+		</div>
+		<div class="slds-var-p-around_x-small lgc-bg">
+			<lightning-input 	type="number" 
+								label="Testing, Debugging, and Deployment" 
+								placeholder="Enter Your Score"
+								maxlength="3" 
+								value={testingDebuggingAndDeployment}
+								max='100'
+								message-when-range-overflow='Please enter between 1-100'
+								onchange={onTestingDebuggingAndDeploymentChange}>
+			</lightning-input>
+		</div>
+		<lightning-textarea 	name="scoreMessage"
+								slot="footer" 
+								disabled value={scoreMessage}
+								label="Score Message">
+		</lightning-textarea>
+	</lightning-card>
+</template>
