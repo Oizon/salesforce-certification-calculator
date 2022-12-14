@@ -32,15 +32,28 @@ export default class CertificationCalculator extends LightningElement {
     }
     
     
-    //@track is used to make variables reactive allowing use to store the value
+    //these are tracked values from the HTML
+    //All
+    scoreMessage = NO_RESULTS;
+    sectionQuestionCount = NO_RESULTS;
+    //Platform Developer 1
     developerFundamentals = 0;
     processAutomationAndLogic = 0; 
     userInterface = 0 ;
     testingDebuggingAndDeployment = 0;
-    scoreMessage = NO_RESULTS;
-    sectionQuestionCount = NO_RESULTS;
+    //Platform Developer 2
+    advancedDeveloperFundamentals = 0;
+    processAutomationLogicAndIntegration = 0;
+    userInterface2 = 0;
+    testingDebuggingAndDeployment2 = 0;
+    performance = 0;
+
+
+
+
 
     //Retrieves the number that is inputted for use in the back end
+    //Platform Developer 1
     onDeveloperFundamentalsChange(event){
          this.developerFundamentals = event.target.value;
      }
@@ -53,9 +66,15 @@ export default class CertificationCalculator extends LightningElement {
      onTestingDebuggingAndDeploymentChange(event){
          this.testingDebuggingAndDeployment = event.target.value;
      }
+     //Platform Developer 2
+     onadvancedDeveloperFundamentalsChange(event){
+        this.advancedDeveloperFundamentals = event.target.value;
+     }
 
     //This calculates the score based on const and inputted variables
     calculateScorePlatformDeveloper1 () {
+    
+
 
         //Storage of Variables
         const questionCount = 60;
